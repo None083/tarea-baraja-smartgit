@@ -11,7 +11,7 @@ import java.util.Random;
  * @author noelia
  * 
  * clase naipe con dos atributos
- * nº carta: 1 ... sota, caballo, rey
+ * nº carta: 1 ... 8(sota), 9(caballo), 10(rey)
  * palo: oros, bastos, espada, copas
  * 
  * 
