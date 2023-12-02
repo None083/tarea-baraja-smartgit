@@ -5,6 +5,7 @@
 package daw;
 
 import java.util.Random;
+import org.apache.commons.lang3.RandomStringUtils;
 
 /**
  *
@@ -33,22 +34,23 @@ import java.util.Random;
  */
 public class Naipe {
     
-    private final int NUM_MIN = 1;
-    private final int NUM_MAX = 10;
+    private final static String[] opcionesNumCarta = {"1", "2", "3", "4", "5", 
+        "6", "7", "sota", "caballo", "rey"};
     private static Random random = new Random();
 
-    private int numeroCarta;
+    private String numeroCarta;
     private Palo palo;
 
     public Naipe() {
-        this.numeroCarta = random.nextInt(NUM_MIN, NUM_MAX+1);
+        this.numeroCarta = numCartaAleatorio();
         this.palo = paloAleatorio();
     }
 
-    public Naipe(int numeroCarta, Palo palo) {
+    public Naipe(String numeroCarta, Palo palo) {
         
-        if(numeroCarta < NUM_MIN || this.numeroCarta > NUM_MAX){
-            throw new IllegalArgumentException("El número de carta no existe, debe estar entre 1-10");
+        if(){
+            throw new IllegalArgumentException("El número de carta no existe, "
+                    + "debe estar entre 1-10");
         }
         
         this.numeroCarta = numeroCarta;
@@ -61,6 +63,11 @@ public class Naipe {
     private Palo paloAleatorio() {
         Palo[] valores = Palo.values();
         return valores[random.nextInt(valores.length)];
+    }
+    
+    private String numCartaAleatorio(){
+        //int aleatorio = random.nextInt(opcionesNumCarta.length);
+        return opcionesNumCarta[random.nextInt(opcionesNumCarta.length)];
     }
     
 }
