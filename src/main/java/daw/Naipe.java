@@ -4,7 +4,6 @@
 package daw;
 
 import java.util.Random;
-import org.apache.commons.lang3.RandomStringUtils;
 
 /**
  *
@@ -13,22 +12,9 @@ import org.apache.commons.lang3.RandomStringUtils;
  * clase naipe con dos atributos nº carta: 1 ... 8(sota), 9(caballo), 10(rey)
  * palo: oros, bastos, espada, copas
  *
- *
  * constructor: uno aleatorio por defecto, otro con parametros, lanzar excepcion
  * en caso de parametros erroneos
- *
- *
- * clase baraja: atributo array de naipes constructor: por defecto rellena el
- * array de naipe
- *
- *
- * Main: para probar lo que hemos hecho, y también crear una baraja y mostrarla
- *
- * 1. crear carta aleatoria y mostrar 2. crear baraja con constructor parametros
- * y mostrar 3. sacar cartas, mostrar hasta que salga una carta que se solicita
- * al usuario
- *
- *
+ * 
  */
 public class Naipe {
 
@@ -76,7 +62,7 @@ public class Naipe {
         StringBuilder sb = new StringBuilder();
         sb.append("Naipe{");
         sb.append("numeroCarta=").append(numeroCarta);
-        sb.append(", palo=").append(palo);
+        sb.append(", palo=").append(palo.getNombre());
         sb.append('}');
         return sb.toString();
     }
