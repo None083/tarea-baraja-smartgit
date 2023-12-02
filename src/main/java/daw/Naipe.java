@@ -32,13 +32,17 @@ public class Naipe {
 
     public Naipe(String numeroCarta, Palo palo) {
 
+        try{
+            this.numeroCarta = numeroCarta;
+        }catch(IllegalArgumentException iae){
+            this.numeroCarta = numCartaAleatorio();
+        }
+        this.palo = palo;
+        
         if (!numeroCartaValido(numeroCarta)) {
             throw new IllegalArgumentException("El número de carta no existe, "
                     + "debe estar entre 1-10");
         }
-
-        this.numeroCarta = numeroCarta;
-        this.palo = palo;
     }
 
     public String getNumeroCarta() {
