@@ -4,6 +4,9 @@
  */
 package daw;
 
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author noelia
@@ -20,6 +23,8 @@ package daw;
 public class Main {
 
     public static void main(String[] args) {
+        
+        Scanner teclado = new Scanner(System.in);
 
         //Cración de un naipe aleatorio
         Naipe n1 = new Naipe();
@@ -28,18 +33,33 @@ public class Main {
 
         //Creación de baraja completa
         Baraja baraja = new Baraja();
-
-        for (Naipe naipe : baraja.getBaraja()) {
-            System.out.println(naipe);
+        
+        for (int i = 0; i < baraja.getBaraja().length; i++) {
+            System.out.println(baraja.getBaraja()[i]);
         }
+
+//        for (Naipe naipe : baraja.getBaraja()) {
+//            System.out.println(naipe);
+//        }
         System.out.println("--------------------------------------");
 
         //Mostrar cartas hasta que salga la que yo he escogido
-        Naipe n2 = new Naipe("sota", Palo.ESPADAS);
+        //Naipe n2 = new Naipe("sota", Palo.ESPADAS);
+        
+        String num = JOptionPane.showInputDialog("Elige el numero de la carta");
+        
+        Palo[] valores = Palo.values();
+        
+        Palo palo = (Palo) JOptionPane.showInputDialog
+        (null, "Elige una opción", 
+                "Palos baraja española",JOptionPane.QUESTION_MESSAGE , 
+                null, valores, Palo.OROS);
+        
+        Naipe n3 = new Naipe(num, palo);
 
         for (Naipe naipe : baraja.getBaraja()) {
             System.out.println(naipe);
-            if(naipe.toString().equals(n2.toString())){
+            if(naipe.toString().equals(n3.toString())){
                 break;
             }
         }
