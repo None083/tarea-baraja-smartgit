@@ -1,7 +1,7 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-package daw;
+package partea;
 
 import java.util.Random;
 
@@ -19,7 +19,7 @@ import java.util.Random;
 public class Naipe {
 
     private final static String[] opcionesNumCarta = {"1", "2", "3", "4", "5",
-        "6", "7", "sota", "caballo", "rey"};
+        "6", "7", "8", "9", "10"};
     private static Random random = new Random();
 
     private String numeroCarta;
@@ -31,18 +31,14 @@ public class Naipe {
     }
 
     public Naipe(String numeroCarta, Palo palo) {
-
-        try{
-            this.numeroCarta = numeroCarta;
-        }catch(IllegalArgumentException iae){
-            this.numeroCarta = numCartaAleatorio();
-        }
+        
         this.palo = palo;
         
         if (!numeroCartaValido(numeroCarta)) {
             throw new IllegalArgumentException("El número de carta no existe, "
                     + "debe estar entre 1-10");
         }
+        this.numeroCarta = numeroCarta;
     }
 
     public String getNumeroCarta() {
@@ -54,7 +50,12 @@ public class Naipe {
     }
 
     public void setNumeroCarta(String numeroCarta) {
-        this.numeroCarta = numeroCarta;
+        
+        if (numeroCartaValido(numeroCarta)) {
+            this.numeroCarta = numeroCarta;
+        }else{
+            System.out.println("El valor introducido no es válido, no se ha cambiado");
+        }
     }
 
     public void setPalo(Palo palo) {
@@ -63,10 +64,25 @@ public class Naipe {
 
     @Override
     public String toString() {
+        
         StringBuilder sb = new StringBuilder();
         sb.append("Naipe{");
-        sb.append("numeroCarta=").append(numeroCarta);
-        sb.append(", palo=").append(palo.getNombre());
+        
+        switch(this.numeroCarta){
+            case "8" ->{
+                sb.append("numeroCarta=").append("sota");
+            }
+            case "9" ->{
+                sb.append("numeroCarta=").append("caballo");
+            }
+            case "10" ->{
+                sb.append("numeroCarta=").append("rey");
+            }
+            default ->{
+                sb.append("numeroCarta=").append(numeroCarta);
+            }
+        }
+        sb.append(", palo=").append(palo);
         sb.append('}');
         return sb.toString();
     }
@@ -85,7 +101,7 @@ public class Naipe {
     private boolean numeroCartaValido(String numCarta) {
         boolean valida = false;
 
-        for (String s : opcionesNumCarta) {
+        for (String s : this.opcionesNumCarta) {
             if (numCarta.equalsIgnoreCase(s)) {
                 valida = true;
             }

@@ -2,10 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package daw;
+package parteb;
 
+import parteb.Baraja;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import partea.Naipe;
+import partea.Palo;
 
 /**
  *
