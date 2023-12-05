@@ -10,13 +10,10 @@ package partea;
  */
 public enum Palo {
     
-    OROS(),
-    COPAS(),
-    BASTOS(),
-    ESPADAS();
+    OROS,
+    COPAS,
+    BASTOS,
+    ESPADAS;
 
-    private Palo() {
-        
-    }
     
 }
