@@ -3,6 +3,7 @@
  */
 package partea;
 
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -18,19 +19,19 @@ import java.util.Random;
  */
 public class Naipe {
 
-    private final static String[] opcionesNumCarta = {"1", "2", "3", "4", "5",
-        "6", "7", "8", "9", "10"};
+    private final static int NUM_CARTA_MIN = 1;
+    private final static int NUM_CARTA_MAX = 10;
     private static Random random = new Random();
 
-    private String numeroCarta;
+    private int numeroCarta;
     private Palo palo;
 
     public Naipe() {
-        this.numeroCarta = numCartaAleatorio();
+        this.numeroCarta = random.nextInt(NUM_CARTA_MIN, NUM_CARTA_MAX+1);//Le sumo 1 porque el random excluye el último número
         this.palo = paloAleatorio();
     }
 
-    public Naipe(String numeroCarta, Palo palo) {
+    public Naipe(int numeroCarta, Palo palo) {
         
         this.palo = palo;
         
@@ -41,7 +42,7 @@ public class Naipe {
         this.numeroCarta = numeroCarta;
     }
 
-    public String getNumeroCarta() {
+    public int getNumeroCarta() {
         return numeroCarta;
     }
 
@@ -49,7 +50,7 @@ public class Naipe {
         return palo;
     }
 
-    public void setNumeroCarta(String numeroCarta) {
+    public void setNumeroCarta(int numeroCarta) {
         
         if (numeroCartaValido(numeroCarta)) {
             this.numeroCarta = numeroCarta;
@@ -63,19 +64,47 @@ public class Naipe {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.numeroCarta);
+        hash = 79 * hash + Objects.hashCode(this.palo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Naipe other = (Naipe) obj;
+        if (!Objects.equals(this.numeroCarta, other.numeroCarta)) {
+            return false;
+        }
+        return this.palo == other.palo;
+    }
+    
+    
+
+    @Override
     public String toString() {
         
         StringBuilder sb = new StringBuilder();
         sb.append("Naipe{");
         
         switch(this.numeroCarta){
-            case "8" ->{
+            case 8 ->{
                 sb.append("numeroCarta=").append("sota");
             }
-            case "9" ->{
+            case 9 ->{
                 sb.append("numeroCarta=").append("caballo");
             }
-            case "10" ->{
+            case 10 ->{
                 sb.append("numeroCarta=").append("rey");
             }
             default ->{
@@ -93,18 +122,11 @@ public class Naipe {
         return valores[random.nextInt(valores.length)];
     }
 
-    private String numCartaAleatorio() {
-        //int aleatorio = random.nextInt(opcionesNumCarta.length);
-        return opcionesNumCarta[random.nextInt(opcionesNumCarta.length)];
-    }
-
-    private boolean numeroCartaValido(String numCarta) {
+    private boolean numeroCartaValido(int numCarta) {
         boolean valida = false;
-
-        for (String s : this.opcionesNumCarta) {
-            if (numCarta.equalsIgnoreCase(s)) {
-                valida = true;
-            }
+        
+        if(numCarta >= NUM_CARTA_MIN && numCarta <= NUM_CARTA_MAX){
+            valida = true;
         }
         return valida;
     }

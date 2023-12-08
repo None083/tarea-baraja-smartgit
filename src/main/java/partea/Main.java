@@ -4,6 +4,8 @@
  */
 package partea;
 
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -13,14 +15,34 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Naipe n1 = new Naipe("10", Palo.OROS);
+        Naipe n1 = new Naipe(10, Palo.OROS);
         
-        Naipe naipe;
+        Naipe n2;
         
         do {
-            naipe = new Naipe();
-            System.out.println(naipe);
-        } while (!naipe.toString().equals(n1.toString()));
+            n2 = new Naipe();
+            System.out.println(n2);
+        } while (!n2.equals(n1));
+        System.out.println("--------------------------------------------------");
+        
+        
+//        Pidiendo el naipe por teclado
+
+        int num = Integer.parseInt(JOptionPane.showInputDialog("Elige el numero de la carta"));
+        
+        Palo[] valores = Palo.values();
+        
+        Palo palo = (Palo) JOptionPane.showInputDialog
+        (null, "Elige una opción", 
+                "Palos baraja española",JOptionPane.QUESTION_MESSAGE , 
+                null, valores, Palo.OROS);
+        
+        Naipe n3 = new Naipe(num, palo);
+
+        do {
+            n2 = new Naipe();
+            System.out.println(n2);
+        } while (!n2.equals(n3));
 
     }
 

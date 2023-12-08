@@ -23,14 +23,14 @@ public class Baraja {
         
         this.BARAJA = new Naipe[NUM_TOTAL_CARTAS];
 
-        int contadorCartas = 0;
+        int cartasActuales = 0;
 
-        while (contadorCartas < NUM_TOTAL_CARTAS) {
+        while (cartasActuales < NUM_TOTAL_CARTAS) {
             Naipe naipe = new Naipe();
 
-            if (!naipeValido(naipe, contadorCartas)) {
-                this.BARAJA[contadorCartas] = naipe;
-                contadorCartas++;
+            if (!naipeRepetido(naipe, cartasActuales)) {
+                this.BARAJA[cartasActuales] = naipe;
+                cartasActuales++;
             }
         }
     }
@@ -48,9 +48,9 @@ public class Baraja {
         return sb.toString();
     }
     
-    private boolean naipeValido(Naipe naipe, int cartasActuales) {
+    private boolean naipeRepetido(Naipe naipe, int cartasActuales) {
         for (int i = 0; i < cartasActuales; i++) {
-            if (BARAJA[i].toString().equals(naipe.toString())) {
+            if (BARAJA[i].equals(naipe)) {
                 return true;
             }
         }
