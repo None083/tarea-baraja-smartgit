@@ -105,9 +105,7 @@ public class Baraja2 {
     }
 
     public Naipe[] sacarNoNull(int numCartas) {
-
-        Naipe[] barajaNueva = new Naipe[NUM_TOTAL_CARTAS - numCartas];
-
+        
         if (numCartas < 1 && numCartas > 40) {
             return new Naipe[0];
         }
@@ -124,18 +122,21 @@ public class Baraja2 {
             this.BARAJA[nCarta] = null;
         }
 
+        Naipe[] barajaNueva = new Naipe[NUM_TOTAL_CARTAS - numCartas];
+        int contadorCartasNull = 0;
+
         for (int i = 0; i < this.BARAJA.length; i++) {
-            for (int j = 0; j < barajaNueva.length; j++) {
-                if (this.BARAJA[i] != null) {
-                    barajaNueva[j] = this.BARAJA[i];
-                }
+
+            if (this.BARAJA[i] != null) {
+                barajaNueva[i-contadorCartasNull] = this.BARAJA[i];
+            } else {
+                contadorCartasNull++;
             }
         }
 
-            this.BARAJA = barajaNueva;
+        this.BARAJA = barajaNueva;
 
-            return arrayNaipes;
-        }
-
-    
+        return arrayNaipes;
     }
+
+}
