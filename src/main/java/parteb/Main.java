@@ -27,17 +27,29 @@ public class Main {
 
         baraja.barajar(4);
         System.out.println(baraja);
-        System.out.println("------------Sacar naipes y mostrar nuevo array----");
+//        System.out.println("------------Sacar naipes y mostrar nuevo array----");
+//        
+//        Naipe[] baraja2 = baraja.sacar(39);
+//        
+//        for (Naipe naipe : baraja2) {
+//            System.out.println(naipe);
+//        }
+//        
+//        System.out.println("------------Array base----------------------------");
+//        System.out.println(baraja);
         
-        Naipe[] baraja2 = baraja.sacar(39);
+        
+        System.out.println("-------------Método sacar sin null----------------");
+        
+        Naipe[] baraja2 = baraja.sacarNoNull(24);
         
         for (Naipe naipe : baraja2) {
             System.out.println(naipe);
         }
         
-        System.out.println("------------Array base----------------------------");
+        System.out.println("------------Array base no null----------------------------");
         System.out.println(baraja);
-
+        
     }
 
 }

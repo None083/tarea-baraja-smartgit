@@ -28,7 +28,8 @@ public class Main {
         
 //        Pidiendo el naipe por teclado
 
-        int num = Integer.parseInt(JOptionPane.showInputDialog("Elige el numero de la carta"));
+        int num = Integer.parseInt(JOptionPane.showInputDialog(
+                "Elige el numero de la carta"));
         
         Palo[] valores = Palo.values();
         

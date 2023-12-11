@@ -66,8 +66,8 @@ public class Naipe {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.numeroCarta);
-        hash = 79 * hash + Objects.hashCode(this.palo);
+        hash = 89 * hash + this.numeroCarta;
+        hash = 89 * hash + Objects.hashCode(this.palo);
         return hash;
     }
 
@@ -83,13 +83,11 @@ public class Naipe {
             return false;
         }
         final Naipe other = (Naipe) obj;
-        if (!Objects.equals(this.numeroCarta, other.numeroCarta)) {
+        if (this.numeroCarta != other.numeroCarta) {
             return false;
         }
         return this.palo == other.palo;
     }
-    
-    
 
     @Override
     public String toString() {
