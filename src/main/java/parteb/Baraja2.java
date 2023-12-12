@@ -83,46 +83,57 @@ public class Baraja2 {
         }
     }
 
+//    public Naipe[] sacar(int numCartas) {
+//
+//        if (numCartas < 1 && numCartas > 40) {
+//            return new Naipe[0];
+//        }
+//
+//        Naipe[] arrayNaipes = new Naipe[numCartas];
+//        int nCarta;
+//
+//        for (int i = 0; i < numCartas; i++) {
+//            nCarta = random.nextInt(0, 40);
+//            while (this.BARAJA[nCarta] == null) {
+//                nCarta = random.nextInt(0, 40);
+//            }
+//            arrayNaipes[i] = this.BARAJA[nCarta];
+//            this.BARAJA[nCarta] = null;
+//
+//        }
+//        return arrayNaipes;
+//    }
+
     public Naipe[] sacar(int numCartas) {
-
-        if (numCartas < 1 && numCartas > 40) {
-            return new Naipe[0];
-        }
-
-        Naipe[] arrayNaipes = new Naipe[numCartas];
-        int nCarta;
-
-        for (int i = 0; i < numCartas; i++) {
-            nCarta = random.nextInt(0, 40);
-            while (this.BARAJA[nCarta] == null) {
-                nCarta = random.nextInt(0, 40);
-            }
-            arrayNaipes[i] = this.BARAJA[nCarta];
-            this.BARAJA[nCarta] = null;
-
-        }
-        return arrayNaipes;
-    }
-
-    public Naipe[] sacarNoNull(int numCartas) {
         
-        if (numCartas < 1 && numCartas > 40) {
+        // Si el numero de cartas que quiero sacar es mayor a la longitud de la baraja
+        // el numero de cartas a sacar se sustituye por el de cartas totales que hay
+        // en el array
+        if(numCartas < 1 || numCartas > this.BARAJA.length){
+            numCartas = this.BARAJA.length;
+        }
+        
+        // Si ya no quedan cartas en la baraja devuelve un array vacío
+        if(this.BARAJA.length < 1){
+            System.out.println("Ya se han sacado todas las cartas");
             return new Naipe[0];
         }
 
+        // Nuevo array para guardar las cartas que quedan en la baraja
         Naipe[] arrayNaipes = new Naipe[numCartas];
         int nCarta;
 
+        // 
         for (int i = 0; i < numCartas; i++) {
-            nCarta = random.nextInt(0, 40);
+            nCarta = random.nextInt(0, this.BARAJA.length);
             while (this.BARAJA[nCarta] == null) {
-                nCarta = random.nextInt(0, 40);
+                nCarta = random.nextInt(0, this.BARAJA.length);
             }
             arrayNaipes[i] = this.BARAJA[nCarta];
             this.BARAJA[nCarta] = null;
         }
 
-        Naipe[] barajaNueva = new Naipe[NUM_TOTAL_CARTAS - numCartas];
+        Naipe[] barajaNueva = new Naipe[this.BARAJA.length - numCartas];
         int contadorCartasNull = 0;
 
         for (int i = 0; i < this.BARAJA.length; i++) {
