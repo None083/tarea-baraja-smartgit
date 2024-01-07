@@ -123,7 +123,7 @@ public class Baraja2 {
         Naipe[] arrayNaipes = new Naipe[numCartas];
         int nCarta;
 
-        // 
+        
         for (int i = 0; i < numCartas; i++) {
             nCarta = random.nextInt(0, this.BARAJA.length);
             while (this.BARAJA[nCarta] == null) {
